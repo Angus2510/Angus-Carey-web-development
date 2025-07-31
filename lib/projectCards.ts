@@ -28,12 +28,12 @@ export const projectCards = [
     },
   },
   {
-    image: "/window.svg",
+    image: "/login.png",
     alt: "Limpopo Chefs Academy Portal",
     title: "Limpopo Chefs Academy Portal",
     description: "Full-stack portal for chef training and management.",
     caseStudy: "View Case Study",
-    video: "/LCA-admin.mp4",
+
     links: [
       { label: "Live Site", href: "#" },
       { label: "GitHub", href: "#" },
