@@ -5,6 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import Link from "next/link";
+import { projectCards } from "@/lib/projectCards";
+import { caseStudies } from "@/lib/caseStudies";
 
 // Placeholder for new components
 // import Navbar from "../components/Navbar";
@@ -27,7 +30,7 @@ export default function Portfolio() {
       <header className="w-full flex items-center justify-between px-4 md:px-6 py-2 md:py-1 shadow-md bg-white sticky top-0 z-50">
         <div className="flex items-center">
           <Image
-            src="/logo-new.png"
+            src="/logo-new.svg"
             alt="Logo"
             width={48}
             height={48}
@@ -152,7 +155,7 @@ export default function Portfolio() {
             Angus Carey
           </span>
           <h1 className="text-base sm:text-xl md:text-2xl font-semibold mb-4">
-            Headless Shopify Developer | Next.js & React Specialist
+            Shopify Developer | Next.js & React Specialist
           </h1>
         </div>
         <p className="text-base sm:text-lg md:text-xl mb-6 max-w-md mx-auto">
@@ -170,84 +173,93 @@ export default function Portfolio() {
           Featured Projects
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {/* Headless Shopify Demo */}
-          <Card>
-            <Image
-              src="/public/globe.svg"
-              alt="Headless Shopify Demo"
-              width={400}
-              height={300}
-              className="w-full h-40 object-cover rounded-t"
-            />
-            <div className="p-4">
-              <h3 className="font-bold text-xl mb-2">Headless Shopify Demo</h3>
-              <p className="mb-2">
-                A lightning-fast, custom Shopify storefront built with Hydrogen
-                and Next.js.
-              </p>
-              <Button className="w-full mb-2">View Case Study</Button>
-              <div className="flex gap-2">
-                <a href="#" className="text-blue-600">
-                  Live Site
-                </a>
-                <a href="#" className="text-blue-600">
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </Card>
-          {/* Limpopo Chefs Academy Portal */}
-          <Card>
-            <Image
-              src="/public/window.svg"
-              alt="Limpopo Chefs Academy Portal"
-              width={400}
-              height={300}
-              className="w-full h-40 object-cover rounded-t"
-            />
-            <div className="p-4">
-              <h3 className="font-bold text-xl mb-2">
-                Limpopo Chefs Academy Portal
-              </h3>
-              <p className="mb-2">
-                Full-stack portal for chef training and management.
-              </p>
-              <Button className="w-full mb-2">View Case Study</Button>
-              <div className="flex gap-2">
-                <a href="#" className="text-blue-600">
-                  Live Site
-                </a>
-                <a href="#" className="text-blue-600">
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </Card>
-          {/* Supporting Projects */}
-          <Card>
-            <Image
-              src="/public/next.svg"
-              alt="Supporting Project"
-              width={400}
-              height={300}
-              className="w-full h-40 object-cover rounded-t"
-            />
-            <div className="p-4">
-              <h3 className="font-bold text-xl mb-2">Supporting Project</h3>
-              <p className="mb-2">
-                Showcase of React, Next.js, and API integrations.
-              </p>
-              <Button className="w-full mb-2">View Case Study</Button>
-              <div className="flex gap-2">
-                <a href="#" className="text-blue-600">
-                  Live Site
-                </a>
-                <a href="#" className="text-blue-600">
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </Card>
+          {projectCards.map((card) => {
+            // Try to get video from caseStudies if not present in projectCards
+            const caseStudy = caseStudies.find(
+              (cs) =>
+                cs.title.replace(/Headless Shopify/g, "Shopify") ===
+                card.title.replace(/Headless Shopify/g, "Shopify")
+            );
+            const videoSrc = card.video || (caseStudy && caseStudy.video);
+            const title = card.title.replace(/Headless Shopify/g, "Shopify");
+            const description = card.description.replace(
+              /Headless Shopify/g,
+              "Shopify"
+            );
+            return (
+              <Card key={title}>
+                {videoSrc ? (
+                  <video
+                    src={videoSrc}
+                    controls
+                    width={600}
+                    height={400}
+                    className="w-full h-72 object-contain rounded-t bg-black"
+                    poster={card.image}
+                  />
+                ) : (
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    width={600}
+                    height={400}
+                    className="w-full h-72 object-cover rounded-t"
+                  />
+                )}
+                <div className="p-4">
+                  <h3 className="font-bold text-xl mb-2">{title}</h3>
+                  <p className="mb-2">{description}</p>
+                  <Link
+                    href={`/case-study/${title
+                      .replace(/\s+/g, "-")
+                      .toLowerCase()}`}
+                    className="w-full mb-2"
+                    passHref
+                  >
+                    <Button className="w-full mb-2">{card.caseStudy}</Button>
+                  </Link>
+                  <div className="flex gap-2">
+                    {card.links.map((link) => {
+                      if (link.label.toLowerCase() === "github") {
+                        return (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            className="text-blue-600"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="inline-block align-middle"
+                            >
+                              <path d="M12 2C6.477 2 2 6.484 2 12.012c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.579.688.481C19.138 20.175 22 16.427 22 12.012 22 6.484 17.523 2 12 2z" />
+                            </svg>
+                          </a>
+                        );
+                      }
+                      return (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          className="text-blue-600"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
@@ -276,19 +288,33 @@ export default function Portfolio() {
         className="py-16 px-4 bg-white flex flex-col md:flex-row items-center gap-8"
       >
         <Image
-          src="/public/file.svg"
+          src="/profile-pic.png"
           alt="Professional Headshot"
-          width={160}
-          height={160}
-          className="w-40 h-40 rounded-full object-cover mb-6 md:mb-0"
+          width={300}
+          height={300}
+          className=" rounded-full object-cover mb-6 md:mb-0"
         />
         <div className="max-w-xl">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">About Me</h2>
           <p className="mb-4">
-            A few paragraphs about your story, passion for development, and
-            unique value proposition.
+            I’m a highly motivated and adaptable Full-Stack Web Developer with
+            deep expertise in the MERN stack, specializing in Next.js, React,
+            TypeScript, Prisma, and Tailwind CSS. I’m also a Shopify developer
+            focused on building lightning-fast, custom storefronts that are
+            optimized to drive conversions and enhance user experience. As the
+            sole developer behind a comprehensive educational portal for Limpopo
+            Chefs Academy, I’ve delivered robust, scalable, and intuitive web
+            solutions entirely from the ground up. My full-stack skill set
+            includes REST API development, secure authentication with NextAuth,
+            database management (MongoDB, Supabase), and AWS S3 integration.
+            Whether it’s crafting a high-performing Shopify store or
+            architecting full-stack applications from scratch, I thrive in
+            remote, agile environments and enjoy turning complex ideas into
+            impactful digital products. I’m currently open to part-time or
+            freelance remote opportunities where I can bring value through
+            full-stack or Shopify development, collaborate with great teams, and
+            contribute to innovative, client-focused projects.
           </p>
-          <p className="mb-4">Infuse a bit of personality here.</p>
         </div>
       </section>
 
@@ -322,11 +348,20 @@ export default function Portfolio() {
               </a>
             </p>
             <div className="flex justify-center gap-4 mt-2">
-              <a href="#" className="text-blue-600">
+              <a href="#" className="text-blue-600" aria-label="LinkedIn">
                 LinkedIn
               </a>
-              <a href="#" className="text-blue-600">
-                GitHub
+              <a href="#" className="text-blue-600" aria-label="GitHub">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="inline-block align-middle"
+                >
+                  <path d="M12 2C6.477 2 2 6.484 2 12.012c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.579.688.481C19.138 20.175 22 16.427 22 12.012 22 6.484 17.523 2 12 2z" />
+                </svg>
               </a>
             </div>
           </div>
