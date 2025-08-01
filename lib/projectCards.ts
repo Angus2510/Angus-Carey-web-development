@@ -3,13 +3,13 @@
 
 export const projectCards = [
   {
-    image: "/globe.svg",
-    alt: "Headless Shopify Demo",
-    title: "Headless Shopify Demo",
+    image: "/shopify store.png",
+    alt: "Shopify Demo",
+    title: "Shopify Demo",
     description:
-      "A lightning-fast, custom Shopify storefront built with Hydrogen and Next.js.",
+      "A Shopify storefront built using shopify themes, utilizing the Storefront API for dynamic content.",
     caseStudy: "View Case Study",
-    video: "/Info-Chefs.mp4",
+    // video: null,
     links: [
       { label: "Live Site", href: "#" },
       { label: "GitHub", href: "#" },
@@ -24,7 +24,7 @@ export const projectCards = [
         "/globe.svg",
       ],
       breakdown:
-        "This project involved building a custom Shopify storefront using Hydrogen and Next.js. Key features included lightning-fast performance, custom integrations, and a modern UI.",
+        "A Shopify storefront built using shopify themes, utilizing the Storefront API for dynamic content.",
     },
   },
   {
@@ -52,10 +52,79 @@ export const projectCards = [
     },
   },
   {
-    image: "/next.svg",
-    alt: "Supporting Project",
-    title: "Supporting Project",
-    description: "Showcase of React, Next.js, and API integrations.",
+    image: "/info-chefs.png",
+    alt: "Info-chefs",
+    title: "Info-Chef Event Registration",
+    description: "Full stack event registration system.",
+    caseStudy: "View Case Study",
+    links: [
+      { label: "Live Site", href: "#" },
+      { label: "GitHub", href: "#" },
+    ],
+    caseStudyDetails: {
+      images: [
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+      ],
+      breakdown:
+        "This project highlights API integrations and advanced React/Next.js features.",
+    },
+  },
+  {
+    image: "/hey-bro.png",
+    alt: "Hey-bro men's mental health",
+    title: "Hey-bro men's mental health",
+    description: "An AI mens mental health chatbot and app.",
+    caseStudy: "View Case Study",
+    links: [
+      { label: "Live Site", href: "#" },
+      { label: "GitHub", href: "#" },
+    ],
+    caseStudyDetails: {
+      images: [
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+      ],
+      breakdown:
+        "This project highlights API integrations and advanced React/Next.js features.",
+    },
+  },
+  {
+    image: "/apply-main.png",
+    alt: "Limpopo Chefs Academy Registration",
+    title: "Limpopo Chefs Academy Registration",
+    description: "Full stack event registration system.",
+    caseStudy: "View Case Study",
+    links: [
+      { label: "Live Site", href: "#" },
+      { label: "GitHub", href: "#" },
+    ],
+    caseStudyDetails: {
+      images: [
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+        "/next.svg",
+      ],
+      breakdown:
+        "This project highlights API integrations and advanced React/Next.js features.",
+    },
+  },
+  {
+    image: "/info-chefs.png",
+    alt: "Info-chefs",
+    title: "Info-Chef Event Registration",
+    description: "Full stack event registration system.",
     caseStudy: "View Case Study",
     links: [
       { label: "Live Site", href: "#" },

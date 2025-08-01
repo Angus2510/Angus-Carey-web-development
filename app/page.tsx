@@ -16,14 +16,27 @@ import { caseStudies } from "@/lib/caseStudies";
 
 const skills = {
   "Core Languages": ["JavaScript", "TypeScript", "HTML", "CSS"],
-  "Headless E-commerce": ["Shopify Hydrogen", "Shopify Storefront API"],
   "Frontend Frameworks": ["React", "Next.js"],
   "Backend/Databases": ["Node.js", "Express", "MongoDB", "PostgreSQL"],
   "Tools & Methodologies": ["Git", "Jest", "CI/CD", "Agile"],
+  "E-commerce & Shopify": [
+    "Shopify Development",
+    "Theme Customization",
+    "Storefront API",
+    "Custom Apps",
+  ],
 };
 
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const handleSend = (e) => {
+    e.preventDefault();
+    const mailto = `mailto:angiscarey1@gmail.com?subject=Portfolio%20Contact&body=${encodeURIComponent(
+      message
+    )}`;
+    window.location.href = mailto;
+  };
   return (
     <main className="min-h-screen bg-white text-gray-900 flex flex-col">
       {/* Header/Navigation Bar */}
@@ -155,7 +168,7 @@ export default function Portfolio() {
             Angus Carey
           </span>
           <h1 className="text-base sm:text-xl md:text-2xl font-semibold mb-4">
-            Shopify Developer | Next.js & React Specialist
+            Shopify Developer | Next.js & MERN Specialist
           </h1>
         </div>
         <p className="text-base sm:text-lg md:text-xl mb-6 max-w-md mx-auto">
@@ -163,7 +176,7 @@ export default function Portfolio() {
           conversions.
         </p>
         <Button className="px-6 py-2 text-base md:text-lg">
-          View Headless Demo
+          View Shopify Demo
         </Button>
       </section>
 
@@ -175,40 +188,43 @@ export default function Portfolio() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projectCards.map((card) => {
             // Try to get video from caseStudies if not present in projectCards
-            const caseStudy = caseStudies.find(
-              (cs) =>
-                cs.title.replace(/Headless Shopify/g, "Shopify") ===
-                card.title.replace(/Headless Shopify/g, "Shopify")
-            );
-            const videoSrc = card.video || (caseStudy && caseStudy.video);
             const title = card.title.replace(/Headless Shopify/g, "Shopify");
             const description = card.description.replace(
               /Headless Shopify/g,
               "Shopify"
             );
             return (
-              <Card key={title}>
-                {videoSrc ? (
-                  <video
-                    src={videoSrc}
-                    controls
-                    width={600}
-                    height={400}
-                    className="w-full h-72 object-contain rounded-t bg-black"
-                    poster={card.image}
-                  />
-                ) : (
-                  <Image
-                    src={card.image}
-                    alt={card.alt}
-                    width={600}
-                    height={400}
-                    className="w-full h-72 object-cover rounded-t"
-                  />
-                )}
-                <div className="p-4">
-                  <h3 className="font-bold text-xl mb-2">{title}</h3>
-                  <p className="mb-2">{description}</p>
+              <Card
+                key={title}
+                className="flex flex-col h-full justify-between"
+              >
+                <div>
+                  {"video" in card &&
+                  typeof card.video === "string" &&
+                  card.video ? (
+                    <video
+                      src={card.video}
+                      controls
+                      width={600}
+                      height={400}
+                      className="w-full h-56 object-contain rounded-t bg-black"
+                      poster={card.image}
+                    />
+                  ) : (
+                    <Image
+                      src={card.image}
+                      alt={card.alt}
+                      width={600}
+                      height={400}
+                      className="w-full h-56 object-contain rounded-t bg-white"
+                    />
+                  )}
+                  <div className="p-4 min-h-[120px] flex flex-col">
+                    <h3 className="font-bold text-xl mb-2">{title}</h3>
+                    <p className="mb-2 flex-1">{description}</p>
+                  </div>
+                </div>
+                <div className="p-4 pt-0 flex flex-col gap-2 mt-auto">
                   <Link
                     href={`/case-study/${title
                       .replace(/\s+/g, "-")
@@ -264,19 +280,33 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 px-4 bg-blue-50">
+      <section
+        id="skills"
+        className="py-16 px-4 bg-gradient-to-br from-gray-50 to-blue-50"
+      >
         <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
           Skills
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Object.entries(skills).map(([group, items]) => (
-            <div key={group} className="bg-white rounded shadow p-6">
-              <h3 className="font-bold text-lg mb-4">{group}</h3>
-              <ul className="list-disc list-inside">
+            <div
+              key={group}
+              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              style={{
+                background: "linear-gradient(135deg, #ffffff 0%, #f8faff 100%)",
+              }}
+            >
+              <h3 className="font-bold text-lg mb-4 text-blue-900">{group}</h3>
+              <div className="flex flex-wrap gap-2">
                 {items.map((skill) => (
-                  <li key={skill}>{skill}</li>
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                  >
+                    {skill}
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -334,17 +364,24 @@ export default function Portfolio() {
         <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
           Contact
         </h2>
-        <div className="max-w-lg mx-auto">
+        <form className="max-w-lg mx-auto" onSubmit={handleSend}>
           <p className="mb-4 text-center">
             Ready to work together? Get in touch below.
           </p>
-          <Textarea placeholder="Your message" className="mb-4 w-full" />
-          <Button className="w-full mb-4">Send Message</Button>
+          <Textarea
+            placeholder="Your message"
+            className="mb-4 w-full"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <Button className="w-full mb-4" type="submit">
+            Send Message
+          </Button>
           <div className="text-center">
             <p>
               Email:{" "}
-              <a href="mailto:your@email.com" className="text-blue-600">
-                your@email.com
+              <a href="mailto:angiscarey1@gmail.com" className="text-blue-600">
+                angiscarey1@gmail.com
               </a>
             </p>
             <div className="flex justify-center gap-4 mt-2">
@@ -365,7 +402,7 @@ export default function Portfolio() {
               </a>
             </div>
           </div>
-        </div>
+        </form>
       </section>
 
       {/* Footer */}
