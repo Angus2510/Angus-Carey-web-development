@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import Link from "next/link";
 import { projectCards } from "@/lib/projectCards";
-import { caseStudies } from "@/lib/caseStudies";
 
 // Placeholder for new components
 // import Navbar from "../components/Navbar";
@@ -15,9 +14,9 @@ import { caseStudies } from "@/lib/caseStudies";
 // import Testimonial from "../components/Testimonial";
 
 const skills = {
-  "Core Languages": ["JavaScript", "TypeScript", "HTML", "CSS"],
+  "Core Languages": ["JavaScript", "TypeScript", "HTML", "CSS", "tailwindcss"],
   "Frontend Frameworks": ["React", "Next.js"],
-  "Backend/Databases": ["Node.js", "Express", "MongoDB", "PostgreSQL"],
+  "Backend/Databases": ["Node.js", "Express", "MongoDB", "Supabase"],
   "Tools & Methodologies": ["Git", "Jest", "CI/CD", "Agile"],
   "E-commerce & Shopify": [
     "Shopify Development",
@@ -30,24 +29,26 @@ const skills = {
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  const handleSend = (e) => {
+
+  const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     const mailto = `mailto:angiscarey1@gmail.com?subject=Portfolio%20Contact&body=${encodeURIComponent(
       message
     )}`;
     window.location.href = mailto;
+    setMessage("");
   };
   return (
     <main className="min-h-screen bg-white text-gray-900 flex flex-col">
       {/* Header/Navigation Bar */}
-      <header className="w-full flex items-center justify-between px-4 md:px-6 py-2 md:py-1 shadow-md bg-white sticky top-0 z-50">
+      <header className="w-full flex items-center justify-between px-3 sm:px-4 md:px-6 py-3 md:py-1 shadow-md bg-white sticky top-0 z-50">
         <div className="flex items-center">
           <Image
             src="/logo-new.svg"
             alt="Logo"
             width={48}
             height={48}
-            className="h-10 w-10 md:h-[100px] md:w-[100px]"
+            className="h-8 w-8 sm:h-10 sm:w-10 md:h-[100px] md:w-[100px]"
           />
         </div>
         {/* Desktop Nav */}
@@ -77,7 +78,15 @@ export default function Portfolio() {
             Contact
           </a>
         </nav>
-        <Button className="ml-2 md:ml-4 text-base lg:text-xl hidden md:inline-flex">
+        <Button
+          className="ml-2 md:ml-4 text-base lg:text-xl hidden md:inline-flex"
+          onClick={() => {
+            const contactSection = document.getElementById("contact");
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
           Let&apos;s Talk
         </Button>
         {/* Mobile Nav Toggle */}
@@ -161,31 +170,31 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section
         id="home"
-        className="flex flex-col items-center justify-center py-10 md:py-16 px-2 md:px-4 text-center bg-gradient-to-b from-blue-50 to-white"
+        className="flex flex-col items-center justify-center min-h-[60vh] py-12 px-4 text-center bg-gradient-to-b from-blue-50 to-white"
       >
-        <div className="flex flex-col items-center w-full">
-          <span className="text-xl sm:text-2xl md:text-4xl font-bold mb-2">
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Angus Carey
           </span>
-          <h1 className="text-base sm:text-xl md:text-2xl font-semibold mb-4">
+          <h1 className="text-xl sm:text-2xl font-semibold mb-6 px-4 leading-relaxed">
             Shopify Developer | Next.js & MERN Specialist
           </h1>
         </div>
-        <p className="text-base sm:text-lg md:text-xl mb-6 max-w-md mx-auto">
+        <p className="text-lg sm:text-xl mb-8 max-w-sm sm:max-w-md mx-auto px-4 leading-relaxed">
           Building lightning-fast, custom Shopify storefronts that drive
           conversions.
         </p>
-        <Button className="px-6 py-2 text-base md:text-lg">
+        <Button className="w-64 py-3 text-lg font-medium">
           View Shopify Demo
         </Button>
       </section>
 
       {/* Featured Projects Section */}
-      <section id="projects" className="py-16 px-4 bg-white">
-        <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
+      <section id="projects" className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
           Featured Projects
         </h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {projectCards.map((card) => {
             // Try to get video from caseStudies if not present in projectCards
             const title = card.title.replace(/Headless Shopify/g, "Shopify");
@@ -219,20 +228,26 @@ export default function Portfolio() {
                       className="w-full h-56 object-contain rounded-t bg-white"
                     />
                   )}
-                  <div className="p-4 min-h-[120px] flex flex-col">
-                    <h3 className="font-bold text-xl mb-2">{title}</h3>
-                    <p className="mb-2 flex-1">{description}</p>
+                  <div className="p-4 sm:p-6 min-h-[120px] flex flex-col">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3">
+                      {title}
+                    </h3>
+                    <p className="text-base sm:text-lg mb-4 flex-1 leading-relaxed">
+                      {description}
+                    </p>
                   </div>
                 </div>
-                <div className="p-4 pt-0 flex flex-col gap-2 mt-auto">
+                <div className="px-4 sm:px-6 pb-4 sm:pb-6 flex flex-col gap-3 mt-auto">
                   <Link
                     href={`/case-study/${title
                       .replace(/\s+/g, "-")
                       .toLowerCase()}`}
-                    className="w-full mb-2"
+                    className="w-full"
                     passHref
                   >
-                    <Button className="w-full mb-2">{card.caseStudy}</Button>
+                    <Button className="w-full py-3 text-base sm:text-lg">
+                      {card.caseStudy}
+                    </Button>
                   </Link>
                   <div className="flex gap-2">
                     {card.links.map((link) => {
@@ -282,113 +297,191 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section
         id="skills"
-        className="py-16 px-4 bg-gradient-to-br from-gray-50 to-blue-50"
+        className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-blue-50"
       >
-        <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
           Skills
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([group, items]) => (
-            <div
-              key={group}
-              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
-              style={{
-                background: "linear-gradient(135deg, #ffffff 0%, #f8faff 100%)",
-              }}
-            >
-              <h3 className="font-bold text-lg mb-4 text-blue-900">{group}</h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
+        {/* Top row: 3 cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8 max-w-7xl mx-auto">
+          {Object.entries(skills)
+            .slice(0, 3)
+            .map(([group, items]) => (
+              <div
+                key={group}
+                className="bg-white rounded-xl shadow-lg p-5 sm:p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #ffffff 0%, #f8faff 100%)",
+                }}
+              >
+                <h3 className="font-bold text-lg mb-4 text-blue-900">
+                  {group}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
+        {/* Bottom row: 2 cards centered below */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:w-2/3 mx-auto">
+          {Object.entries(skills)
+            .slice(3, 5)
+            .map(([group, items]) => (
+              <div
+                key={group}
+                className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #ffffff 0%, #f8faff 100%)",
+                }}
+              >
+                <h3 className="font-bold text-lg mb-4 text-blue-900">
+                  {group}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
         </div>
       </section>
 
       {/* About Me Section */}
-      <section
-        id="about"
-        className="py-16 px-4 bg-white flex flex-col md:flex-row items-center gap-8"
-      >
-        <Image
-          src="/profile-pic.png"
-          alt="Professional Headshot"
-          width={300}
-          height={300}
-          className=" rounded-full object-cover mb-6 md:mb-0"
-        />
-        <div className="max-w-xl">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">About Me</h2>
-          <p className="mb-4">
-            I’m a highly motivated and adaptable Full-Stack Web Developer with
-            deep expertise in the MERN stack, specializing in Next.js, React,
-            TypeScript, Prisma, and Tailwind CSS. I’m also a Shopify developer
-            focused on building lightning-fast, custom storefronts that are
-            optimized to drive conversions and enhance user experience. As the
-            sole developer behind a comprehensive educational portal for Limpopo
-            Chefs Academy, I’ve delivered robust, scalable, and intuitive web
-            solutions entirely from the ground up. My full-stack skill set
-            includes REST API development, secure authentication with NextAuth,
-            database management (MongoDB, Supabase), and AWS S3 integration.
-            Whether it’s crafting a high-performing Shopify store or
-            architecting full-stack applications from scratch, I thrive in
-            remote, agile environments and enjoy turning complex ideas into
-            impactful digital products. I’m currently open to part-time or
-            freelance remote opportunities where I can bring value through
-            full-stack or Shopify development, collaborate with great teams, and
-            contribute to innovative, client-focused projects.
-          </p>
+      <section id="about" className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="w-48 sm:w-64 md:w-80 flex-shrink-0 mb-6 md:mb-0">
+              <Image
+                src="/profile-pic.png"
+                alt="Professional Headshot"
+                width={300}
+                height={300}
+                className="rounded-full object-cover shadow-lg"
+              />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center md:text-left">
+                About Me
+              </h2>
+              <div className="text-base sm:text-lg leading-relaxed space-y-4">
+                <p>
+                  I&apos;m a highly motivated and adaptable Full-Stack Web
+                  Developer with deep expertise in the MERN stack, specializing
+                  in Next.js, React, TypeScript, Prisma, and Tailwind CSS.
+                </p>
+                <p>
+                  I&apos;m also a Shopify developer focused on building
+                  lightning-fast, custom storefronts that are optimized to drive
+                  conversions and enhance user experience.
+                </p>
+                <p>
+                  As the sole developer behind a comprehensive educational
+                  portal for Limpopo Chefs Academy, I&apos;ve delivered robust,
+                  scalable, and intuitive web solutions entirely from the ground
+                  up.
+                </p>
+                <p>
+                  My full-stack skill set includes REST API development, secure
+                  authentication with NextAuth, database management (MongoDB,
+                  Supabase), and AWS S3 integration.
+                </p>
+                <p>
+                  I&apos;m currently open to part-time or freelance remote
+                  opportunities where I can bring value through full-stack or
+                  Shopify development, collaborate with great teams, and
+                  contribute to innovative, client-focused projects.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Testimonials Section (Optional) */}
-      <section id="testimonials" className="py-16 px-4 bg-blue-50">
-        <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
+      <section
+        id="testimonials"
+        className="py-12 sm:py-16 px-4 sm:px-6 bg-blue-50"
+      >
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
           Testimonials
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          <Skeleton className="h-32 sm:h-40" />
+          <Skeleton className="h-32 sm:h-40" />
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 bg-white">
-        <h2 className="text-2xl md:text-4xl font-bold mb-8 text-center">
+      <section
+        id="contact"
+        className="py-12 sm:py-16 px-3 sm:px-4 md:px-6 bg-white"
+      >
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center">
           Contact
         </h2>
-        <form className="max-w-lg mx-auto" onSubmit={handleSend}>
-          <p className="mb-4 text-center">
+        <form
+          className="max-w-lg mx-auto w-full px-3 sm:px-0"
+          onSubmit={handleSend}
+        >
+          <p className="mb-4 text-center text-base sm:text-lg">
             Ready to work together? Get in touch below.
           </p>
           <Textarea
             placeholder="Your message"
-            className="mb-4 w-full"
+            className="mb-4 w-full text-base"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <Button className="w-full mb-4" type="submit">
+          <Button className="w-full sm:w-auto mb-4" type="submit">
             Send Message
           </Button>
           <div className="text-center">
             <p>
               Email:{" "}
               <a href="mailto:angiscarey1@gmail.com" className="text-blue-600">
-                angiscarey1@gmail.com
+                anguscarey1@gmail.com
               </a>
             </p>
             <div className="flex justify-center gap-4 mt-2">
-              <a href="#" className="text-blue-600" aria-label="LinkedIn">
-                LinkedIn
+              <a
+                href="https://www.linkedin.com/in/angus-carey-426817268/"
+                className="text-black"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="inline-block align-middle"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z" />
+                </svg>
               </a>
-              <a href="#" className="text-blue-600" aria-label="GitHub">
+              <a
+                href="https://github.com/Angus2510"
+                className="text-black"
+                aria-label="GitHub"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -406,27 +499,35 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 px-4 bg-blue-900 text-white text-center mt-auto">
-        <div>
-          &copy; {new Date().getFullYear()} Angus Carey. All rights reserved.
+      <footer className="py-8 sm:py-10 px-4 sm:px-6 bg-blue-900 text-white text-center mt-auto">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-sm sm:text-base mb-4">
+            &copy; {new Date().getFullYear()} Angus Carey. All rights reserved.
+          </div>
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm sm:text-base">
+            <a href="#home" className="hover:text-blue-300 transition-colors">
+              Home
+            </a>
+            <a
+              href="#projects"
+              className="hover:text-blue-300 transition-colors"
+            >
+              Projects
+            </a>
+            <a href="#about" className="hover:text-blue-300 transition-colors">
+              About
+            </a>
+            <a href="#skills" className="hover:text-blue-300 transition-colors">
+              Skills
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-blue-300 transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
         </div>
-        <nav className="mt-2">
-          <a href="#home" className="mx-2 hover:underline">
-            Home
-          </a>
-          <a href="#projects" className="mx-2 hover:underline">
-            Projects
-          </a>
-          <a href="#about" className="mx-2 hover:underline">
-            About
-          </a>
-          <a href="#skills" className="mx-2 hover:underline">
-            Skills
-          </a>
-          <a href="#contact" className="mx-2 hover:underline">
-            Contact
-          </a>
-        </nav>
       </footer>
     </main>
   );

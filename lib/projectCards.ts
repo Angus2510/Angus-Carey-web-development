@@ -99,9 +99,9 @@ export const projectCards = [
   },
   {
     image: "/apply-main.png",
-    alt: "Limpopo Chefs Academy Registration",
-    title: "Limpopo Chefs Academy Registration",
-    description: "Full stack event registration system.",
+    alt: "Limpopo Chefs Academy Application",
+    title: "Limpopo Chefs Academy Application",
+    description: "Full stack application for chef training and management.",
     caseStudy: "View Case Study",
     links: [
       { label: "Live Site", href: "#" },
