@@ -2,11 +2,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import Link from "next/link";
 import { projectCards } from "@/lib/projectCards";
+import { testimonials } from "@/lib/testimonials";
 
 // Placeholder for new components
 // import Navbar from "../components/Navbar";
@@ -413,18 +413,62 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Testimonials Section (Optional) */}
+      {/* Testimonials Section */}
       <section
         id="testimonials"
         className="py-12 sm:py-16 px-4 sm:px-6 bg-blue-50"
       >
         <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
-          Testimonials
+          What Clients Say
         </h2>
-        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          <Skeleton className="h-32 sm:h-40" />
-          <Skeleton className="h-32 sm:h-40" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+          {testimonials.slice(0, 3).map((testimonial) => (
+            <Card
+              key={testimonial.id}
+              className="p-6 bg-white shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <div className="flex items-center mb-4">
+                <div className="flex text-yellow-400 mb-2">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-5 h-5 fill-current"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <blockquote className="text-gray-700 mb-4 italic">
+                &quot;{testimonial.content}&quot;
+              </blockquote>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  {testimonial.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {testimonial.role}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {testimonial.company}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
+        {testimonials.length > 3 && (
+          <div className="text-center mt-8">
+            <Button variant="outline" className="px-8 py-2">
+              View More Testimonials
+            </Button>
+          </div>
+        )}
       </section>
 
       {/* Contact Section */}

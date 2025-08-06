@@ -11,7 +11,7 @@ export const projectCards = [
     caseStudy: "View Case Study",
     // video: null,
     links: [
-      { label: "Live Site", href: "#" },
+      { label: "Live Site", href: "https://08nzx5-kb.myshopify.com/" },
       { label: "GitHub", href: "#" },
     ],
     caseStudyDetails: {
@@ -35,8 +35,11 @@ export const projectCards = [
     caseStudy: "View Case Study",
 
     links: [
-      { label: "Live Site", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "Live Site", href: "https://portal.limpopochefs.co.za" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Angus2510/limpopo-chefs-next",
+      },
     ],
     caseStudyDetails: {
       images: [
@@ -58,8 +61,11 @@ export const projectCards = [
     description: "Full stack event registration system.",
     caseStudy: "View Case Study",
     links: [
-      { label: "Live Site", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "Live Site", href: "https://infochef.sachefs.co.za/" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Angus2510/info-chef-registration",
+      },
     ],
     caseStudyDetails: {
       images: [
@@ -81,17 +87,15 @@ export const projectCards = [
     description: "An AI mens mental health chatbot and app.",
     caseStudy: "View Case Study",
     links: [
-      { label: "Live Site", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "Live Site", href: "https://hey-bro.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/Angus2510/hey-bro" },
     ],
     caseStudyDetails: {
       images: [
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
+        "/main-hey-bro.png",
+        "/mens-circles.png",
+        "/mental-reset.png",
+        "/hey-bro-chat.png",
       ],
       breakdown:
         "This project highlights API integrations and advanced React/Next.js features.",
@@ -104,13 +108,16 @@ export const projectCards = [
     description: "Full stack application for chef training and management.",
     caseStudy: "View Case Study",
     links: [
-      { label: "Live Site", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "Live Site", href: "https://apply.limpopochefs.co.za/apply" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Angus2510/Apply-to-Limpopo-Chefs-Academy",
+      },
     ],
     caseStudyDetails: {
       images: [
-        "/next.svg",
-        "/next.svg",
+        "/apply-main.png",
+        "/apply submit.png",
         "/next.svg",
         "/next.svg",
         "/next.svg",
@@ -121,24 +128,21 @@ export const projectCards = [
     },
   },
   {
-    image: "/info-chefs.png",
-    alt: "Info-chefs",
-    title: "Info-Chef Event Registration",
-    description: "Full stack event registration system.",
+    image: "/voting-main.png",
+    alt: "South African Chefs Association Voting Portal",
+    title: "South African Chefs Association Voting Portal",
+    description:
+      "Full stack voting portal for South African Chefs Association.",
     caseStudy: "View Case Study",
     links: [
-      { label: "Live Site", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "Live Site", href: "https://sa-chefs-association.vercel.app/" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Angus2510/-SA-Chefs-Association",
+      },
     ],
     caseStudyDetails: {
-      images: [
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-        "/next.svg",
-      ],
+      images: ["/voting-main.png", "/voting-login.png"],
       breakdown:
         "This project highlights API integrations and advanced React/Next.js features.",
     },

@@ -32,16 +32,32 @@ export default async function Page({ params }) {
       <h1 className="text-3xl md:text-5xl font-bold mb-6 text-center">
         {caseStudy.title.replace(/Headless Shopify/g, "Shopify")}
       </h1>
-      {/* Main video or first image */}
+      {/* Main video(s) or first image */}
       {caseStudy.video ? (
-        <video
-          src={caseStudy.video}
-          controls
-          width={800}
-          height={450}
-          className="w-full max-w-2xl h-96 object-contain rounded mb-6 bg-black"
-          poster={caseStudy.images?.[0]?.src}
-        />
+        Array.isArray(caseStudy.video) ? (
+          <div className="w-full max-w-2xl flex flex-col gap-6 mb-6">
+            {caseStudy.video.map((src, idx) => (
+              <video
+                key={src}
+                src={src}
+                controls
+                width={800}
+                height={450}
+                className="w-full h-96 object-contain rounded bg-black"
+                poster={caseStudy.images?.[0]?.src}
+              />
+            ))}
+          </div>
+        ) : (
+          <video
+            src={caseStudy.video}
+            controls
+            width={800}
+            height={450}
+            className="w-full max-w-2xl h-96 object-contain rounded mb-6 bg-black"
+            poster={caseStudy.images?.[0]?.src}
+          />
+        )
       ) : (
         <Image
           src={caseStudy.images?.[0]?.src}
