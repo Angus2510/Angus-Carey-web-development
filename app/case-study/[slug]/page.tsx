@@ -9,7 +9,7 @@ type CaseStudy = {
   title: string;
   images: { src: string; caption: string }[];
   breakdown: string;
-  video: string | null;
+  video: string | string[] | null;
   links: { label: string; href: string }[];
 };
 export default async function Page({ params }) {
