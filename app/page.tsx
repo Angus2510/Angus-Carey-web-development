@@ -184,9 +184,15 @@ export default function Portfolio() {
           Building lightning-fast, custom Shopify storefronts that drive
           conversions.
         </p>
-        <Button className="w-64 py-3 text-lg font-medium">
-          View Shopify Demo
-        </Button>
+        <a
+          href="https://08nzx5-kb.myshopify.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="w-64 py-3 text-lg font-medium">
+            View Shopify Demo
+          </Button>
+        </a>
       </section>
 
       {/* Featured Projects Section */}
