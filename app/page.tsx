@@ -506,7 +506,7 @@ export default function Portfolio() {
           <div className="text-center">
             <p>
               Email:{" "}
-              <a href="mailto:angiscarey1@gmail.com" className="text-blue-600">
+              <a href="mailto:anguscarey1@gmail.com" className="text-blue-600">
                 anguscarey1@gmail.com
               </a>
             </p>
