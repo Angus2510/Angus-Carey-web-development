@@ -498,9 +498,11 @@ export default function Portfolio() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <Button className="w-full sm:w-auto mb-4" type="submit">
-            Send Message
-          </Button>
+          <div className="flex justify-center mb-4">
+            <Button className="px-8 py-3" type="submit">
+              Send Message
+            </Button>
+          </div>
           <div className="text-center">
             <p>
               Email:{" "}
