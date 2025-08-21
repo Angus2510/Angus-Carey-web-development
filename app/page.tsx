@@ -32,7 +32,7 @@ export default function Portfolio() {
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailto = `mailto:angiscarey1@gmail.com?subject=Portfolio%20Contact&body=${encodeURIComponent(
+    const mailto = `mailto:anguscarey1@gmail.com?subject=Portfolio%20Contact&body=${encodeURIComponent(
       message
     )}`;
     window.location.href = mailto;
