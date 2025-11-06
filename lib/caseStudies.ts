@@ -3,16 +3,35 @@
 
 export const caseStudies = [
   {
-    title: "Shopify Demo",
+    title: "Bloedlemoen Shopify Store",
     images: [
       {
-        src: "/shopify store.png",
-        caption: "Modern Shopify storefront with custom theming.",
+        src: "/bloed-hero.png",
+        caption:
+          "Modern Shopify storefront hero section with festive moments branding.",
+      },
+      {
+        src: "/cocktails.png",
+        caption:
+          "Classic cocktails section showcasing product offerings and recipes.",
+      },
+      {
+        src: "/gifts.png",
+        caption: "Festive gifts carousel with interactive product display.",
+      },
+      {
+        src: "/products.png",
+        caption:
+          "Products page with filtering, sorting, and inventory management.",
+      },
+      {
+        src: "/rewards-login.png",
+        caption: "Customer rewards and loyalty program integration.",
       },
     ],
     breakdown:
       "A Shopify storefront built using shopify themes, utilizing the Storefront API for dynamic content. This project demonstrates custom theme development, product management, and seamless checkout experiences.",
-    video: null,
+    video: ["/bloedlemoen.mp4", "/bloedlemoen-rewards.mp4"],
     links: [
       { label: "Live Site", href: "https://08nzx5-kb.myshopify.com/" },
       { label: "GitHub", href: "#" },

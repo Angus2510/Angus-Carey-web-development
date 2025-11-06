@@ -3,20 +3,20 @@
 
 export const projectCards = [
   {
-    image: "/shopify store.png",
+    image: "/bloed-hero.png",
     alt: "Shopify Demo",
-    title: "Shopify Demo",
+    title: "Bloedlemoen Shopify Store",
     description:
       "A Shopify storefront built using shopify themes, utilizing the Storefront API for dynamic content.",
     caseStudy: "View Case Study",
     // video: null,
     links: [
-      { label: "Live Site", href: "https://08nzx5-kb.myshopify.com/" },
+      { label: "Live Site", href: "https://shop.bloedlemoengin.com/" },
       { label: "GitHub", href: "#" },
     ],
     caseStudyDetails: {
       images: [
-        "/globe.svg",
+        "/cocktails.png",
         "/globe.svg",
         "/globe.svg",
         "/globe.svg",
