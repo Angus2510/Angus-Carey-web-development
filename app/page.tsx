@@ -185,7 +185,7 @@ export default function Portfolio() {
           conversions.
         </p>
         <a
-          href="https://08nzx5-kb.myshopify.com/"
+          href="https://shop.bloedlemoengin.com/"
           target="_blank"
           rel="noopener noreferrer"
         >

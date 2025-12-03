@@ -33,7 +33,7 @@ export const caseStudies = [
       "A Shopify storefront built using shopify themes, utilizing the Storefront API for dynamic content. This project demonstrates custom theme development, product management, and seamless checkout experiences.",
     video: ["/bloedlemoen.mp4", "/bloedlemoen-rewards.mp4"],
     links: [
-      { label: "Live Site", href: "https://08nzx5-kb.myshopify.com/" },
+      { label: "Live Site", href: "https://shop.bloedlemoengin.com/" },
       { label: "GitHub", href: "#" },
     ],
   },
